@@ -12,7 +12,7 @@ const SmurfList = props => {
 
     return (
         <>
-            <button onClick={fetchSmurfs}>List the Smurfs</button>
+            <button className='btn' onClick={fetchSmurfs}>List the Smurfs</button>
             <div className='smurf-list'>
                 {props.smurfs.map(smurf => {
                     return (

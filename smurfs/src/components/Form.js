@@ -48,7 +48,7 @@ class SmurfForm extends Component {
                         placeholder='height'
                         name='height'
                     />
-                    <button type='submit'>Add Smurf</button>
+                    <button className='btn' type='submit'>Add Smurf</button>
                 </form>
             </>
         )
