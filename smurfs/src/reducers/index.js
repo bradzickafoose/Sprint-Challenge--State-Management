@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, action) => {
-    console.log('reducer', action)
+    console.log('reducer action:', action)
     switch (action.type) {
         case REQUEST_START:
             return {
