@@ -16,7 +16,7 @@ const SmurfList = props => {
             <div className='smurf-list'>
                 {props.smurfs.map(smurf => {
                     return (
-                        <div key={Date.now()} className='smurf'>
+                        <div key={smurf.id} className='smurf'>
                             <h2>{smurf.name}</h2>
                             <p>Age: {smurf.age}</p>
                             <p>Height: {smurf.height}</p>
