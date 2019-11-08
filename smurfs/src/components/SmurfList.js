@@ -12,8 +12,8 @@ const SmurfList = props => {
 
     return (
         <>
-            <button className='btn' onClick={fetchSmurfs}>List the Smurfs</button>
             <div className='smurf-list'>
+                <button className='btn' onClick={fetchSmurfs}>List the Smurfs</button>
                 {props.smurfs.map(smurf => {
                     return (
                         <div key={smurf.id} className='smurf'>

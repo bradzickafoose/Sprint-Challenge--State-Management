@@ -27,18 +27,22 @@
 }
 
 .App-section input {
+  min-width: 80%;
   margin-right: 1em;
   padding: 1em;
   background-color: #3c68ae;
   border: 1px solid transparent;
-  border-bottom: 1px solid white;
-  border-radius: 4px;
+  border-bottom: 1px solid #6da6ff;
   color: #fff;
+}
+
+.App-section input:focus {
+  border-bottom: 1px solid #fff;
 }
 
 .btn {
   display: block;
-  margin: 1em auto 0;
+  margin: 2em auto;
   padding: 1em;
   background-color: #6da6ff;
   border: 1px solid #6da6ff;
@@ -55,3 +59,12 @@
   border-color: #28477a;
 }
 
+.smurf-list {
+  border-top:1px solid #4070bc;
+}
+.smurf {
+  padding: .5em 1em;
+  margin-bottom: 1em;
+  background-color: #4070bc;
+  border-radius: 8px;
+}
