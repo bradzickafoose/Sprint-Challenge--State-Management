@@ -8,6 +8,10 @@ export const ADD_DATA = 'ADD_DATA';
 export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_FAILED = 'ADD_FAILED';
 
+export const DELETE_DATA = 'DELETE_DATA';
+export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_FAILED = 'DELETE_FAILED';
+
 export const getSmurfs = () => dispatch => {
     dispatch({ type: FETCH_DATA })
     axios
@@ -26,4 +30,18 @@ export const addSmurf = newSmurf => dispatch => {
             dispatch({ type: ADD_SUCCESS, payload: response.data })
         })
         .catch(error => dispatch({ type: ADD_FAILED, payload: error.message }))
+}
+
+
+export const deleteSmurf = id => dispatch => {
+  dispatch({ type: DELETE_DATA })
+
+  const url = `http://localhost:3333/smurfls/${id}`;
+
+  axios
+      .delete(url)
+      .then(response => {
+          dispatch({ type: DELETE_SUCCESS, payload: response.data })
+      })
+      .catch(error => dispatch({ type: DELETE_FAILED, payload: error.message }))
 }
