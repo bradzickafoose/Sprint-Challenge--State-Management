@@ -1,8 +1,8 @@
 import {
-    REQUEST_START,
-    REQUEST_FAIL,
-    FETCH_SMURFS_SUCCESS,
-    ADD_SMURF_SUCCESS
+    FETCH_DATA,
+    FETCH_FAILED,
+    FETCH_SUCCESS,
+    ADD_SUCCESS
 } from '../actions'
 
 const initialState = {
@@ -14,26 +14,26 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
     console.log('reducer action:', action)
     switch (action.type) {
-        case REQUEST_START:
+        case FETCH_DATA:
             return {
                 ...state,
                 isFetching: true,
                 error: '',
             }
-        case FETCH_SMURFS_SUCCESS:
+        case FETCH_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
                 error: '',
                 smurfs: action.payload
             }
-        case REQUEST_FAIL:
+        case FETCH_FAILED:
             return {
                 ...state,
                 isFetching: false,
                 error: action.payload
             }
-        case ADD_SMURF_SUCCESS:
+        case ADD_SUCCESS:
             return {
                 ...state,
                 smurfs: [...action.payload]
