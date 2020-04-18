@@ -1,29 +1,29 @@
 import axios from 'axios';
 
-export const REQUEST_START = 'REQUEST_START';
-export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS';
-export const REQUEST_FAIL = 'REQUEST_FAIL';
+export const FETCH_DATA = 'FETCH_DATA';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const FETCH_FAILED = 'FETCH_FAILED';
 
-export const ADD_SMURF_START = 'ADD_SMURF_START';
-export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS';
-export const ADD_SMURF_FAIL = 'ADD_SMURF_FAIL';
+export const ADD_DATA = 'ADD_DATA';
+export const ADD_SUCCESS = 'ADD_SUCCESS';
+export const ADD_FAILED = 'ADD_FAILED';
 
 export const getSmurfs = () => dispatch => {
-    dispatch({ type: REQUEST_START })
+    dispatch({ type: FETCH_DATA })
     axios
         .get('http://localhost:3333/smurfs')
         .then(response => {
-            dispatch({ type: FETCH_SMURFS_SUCCESS, payload: response.data })
+            dispatch({ type: FETCH_SUCCESS, payload: response.data })
         })
-        .catch(error => dispatch({ type: REQUEST_FAIL, payload: error }))
+        .catch(error => dispatch({ type: FETCH_FAILED, payload: error.message }))
 }
 
 export const addSmurf = newSmurf => dispatch => {
-    dispatch({ type: ADD_SMURF_START });
+    dispatch({ type: ADD_DATA });
     axios
         .post('http://localhost:3333/smurfs', newSmurf)
         .then(response => {
-            dispatch({ type: ADD_SMURF_SUCCESS, payload: response.data })
+            dispatch({ type: ADD_SUCCESS, payload: response.data })
         })
-        .catch(error => dispatch({ type: ADD_SMURF_FAIL, payload: error }))
-} 
+        .catch(error => dispatch({ type: ADD_FAILED, payload: error.message }))
+}
