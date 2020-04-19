@@ -21,9 +21,7 @@ export const isFetching = () => dispatch => {
 
     axios
       .get('http://localhost:3333/smurfs')
-      .then(response => {
-            dispatch({ type: FETCH_SUCCESS, payload: response.data })
-        })
+      .then(response => dispatch({ type: FETCH_SUCCESS, payload: response.data }))
       .catch(error => dispatch({ type: FETCH_FAILED, payload: error.message }));
 }
 
@@ -32,9 +30,7 @@ export const isAdding = formData => dispatch => {
 
     axios
       .post('http://localhost:3333/smurfs', formData)
-      .then(response => {
-          dispatch({ type: ADD_SUCCESS, payload: response.data })
-      })
+      .then(response => dispatch({ type: ADD_SUCCESS, payload: response.data }))
       .catch(error => dispatch({ type: ADD_FAILED, payload: error.message }));
 }
 
@@ -45,12 +41,9 @@ export const isEditing = formData => dispatch => {
 
   axios
     .put(url, formData)
-    .then(response => {
-      dispatch({ type: EDIT_SUCCESS, payload: response.data })
-    })
+    .then(response => dispatch({ type: EDIT_SUCCESS, payload: response.data }))
     .catch(error => dispatch({ type: EDIT_FAILED, payload: error.message }));
 }
-
 
 export const isDeleting = id => dispatch => {
     dispatch({ type: DELETE_DATA })
@@ -59,8 +52,6 @@ export const isDeleting = id => dispatch => {
 
     axios
       .delete(url)
-      .then(response => {
-        dispatch({ type: DELETE_SUCCESS, payload: response.data })
-      })
+      .then(response => dispatch({ type: DELETE_SUCCESS, payload: response.data }))
       .catch(error => dispatch({ type: DELETE_FAILED, payload: error.message }));
 }
