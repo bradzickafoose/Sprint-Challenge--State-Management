@@ -1,10 +1,19 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { isFetching } from '../actions'
+
 import logo from '../logo.png';
-import "./App.css";
+import './App.css';
+
 import SmurfList from './SmurfList';
 import AddSmurf from './Form';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.isFetching();
+  }
+
   render() {
     return (
       <div className='App'>
@@ -14,11 +23,19 @@ class App extends Component {
         </div>
         <section className='App-section'>
           <AddSmurf />
-          <SmurfList />
+          { this.props.error ? <h2>{this.props.error}</h2> : <SmurfList /> }
         </section>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  error: state.error
+});
+
+const mapDispatchToProps = {
+  isFetching
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
