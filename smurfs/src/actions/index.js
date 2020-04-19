@@ -8,12 +8,17 @@ export const ADD_DATA = 'ADD_DATA';
 export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_FAILED = 'ADD_FAILED';
 
+export const EDIT_DATA = 'EDIT_DATA';
+export const EDIT_SUCCESS = 'EDIT_SUCCESS';
+export const EDIT_FAILED = 'EDIT_FAILED';
+
 export const DELETE_DATA = 'DELETE_DATA';
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
 export const DELETE_FAILED = 'DELETE_FAILED';
 
 export const isFetching = () => dispatch => {
     dispatch({ type: FETCH_DATA })
+
     axios
       .get('http://localhost:3333/smurfs')
       .then(response => {
@@ -24,12 +29,26 @@ export const isFetching = () => dispatch => {
 
 export const isAdding = formData => dispatch => {
     dispatch({ type: ADD_DATA });
+
     axios
       .post('http://localhost:3333/smurfs', formData)
       .then(response => {
           dispatch({ type: ADD_SUCCESS, payload: response.data })
       })
       .catch(error => dispatch({ type: ADD_FAILED, payload: error.message }));
+}
+
+export const isEditing = formData => dispatch => {
+  dispatch({ type: EDIT_DATA });
+
+  const url = `http://localhost:3333/smurfs/${formData.id}`;
+
+  axios
+    .put(url, formData)
+    .then(response => {
+      dispatch({ type: EDIT_SUCCESS, payload: response.data })
+    })
+    .catch(error => dispatch({ type: EDIT_FAILED, payload: error.message }));
 }
 
 
