@@ -5,6 +5,9 @@ import {
     ADD_DATA,
     ADD_SUCCESS,
     ADD_FAILED,
+    EDIT_DATA,
+    EDIT_SUCCESS,
+    EDIT_FAILED,
     DELETE_DATA,
     DELETE_SUCCESS,
     DELETE_FAILED
@@ -22,6 +25,7 @@ export const reducer = (state=initialState, action) => {
     switch (action.type) {
         case FETCH_DATA:
         case ADD_DATA:
+        case EDIT_DATA:
         case DELETE_DATA:
             return {
                 ...state,
@@ -30,6 +34,7 @@ export const reducer = (state=initialState, action) => {
 
         case FETCH_SUCCESS:
         case ADD_SUCCESS:
+        case EDIT_SUCCESS:
         case DELETE_SUCCESS:
             return {
                 ...state,
@@ -40,6 +45,7 @@ export const reducer = (state=initialState, action) => {
 
         case FETCH_FAILED:
         case ADD_FAILED:
+        case EDIT_FAILED:
         case DELETE_FAILED:
             return {
                 ...state,
