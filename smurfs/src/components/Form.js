@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addSmurf } from '../actions';
+import { isAdding } from '../actions';
 
 class SmurfForm extends Component {
 
@@ -18,7 +18,7 @@ class SmurfForm extends Component {
         event.preventDefault();
 
         const smurf = this.state;
-        this.props.addSmurf(smurf);
+        this.props.isAdding(smurf);
 
         this.setState({
             name: '',
@@ -29,7 +29,7 @@ class SmurfForm extends Component {
     render() {
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
+                <form className='form' onSubmit={this.handleSubmit}>
                     <input
                         onChange={this.handleInputChange}
                         value={this.state.name}
@@ -59,4 +59,4 @@ const mapStateToProps = state => ({
     smurfs: state.smurfs
 })
 
-export default connect(mapStateToProps, { addSmurf })(SmurfForm)
+export default connect(mapStateToProps, { isAdding })(SmurfForm)
