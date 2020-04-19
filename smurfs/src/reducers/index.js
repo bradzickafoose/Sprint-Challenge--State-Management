@@ -1,43 +1,58 @@
 import {
-    REQUEST_START,
-    REQUEST_FAIL,
-    FETCH_SMURFS_SUCCESS,
-    ADD_SMURF_SUCCESS
+    FETCH_DATA,
+    FETCH_FAILED,
+    FETCH_SUCCESS,
+    ADD_DATA,
+    ADD_SUCCESS,
+    ADD_FAILED,
+    EDIT_DATA,
+    EDIT_SUCCESS,
+    EDIT_FAILED,
+    DELETE_DATA,
+    DELETE_SUCCESS,
+    DELETE_FAILED
 } from '../actions'
 
 const initialState = {
     smurfs: [],
-    isFetching: false,
+    isLoading: false,
     error: '',
 }
 
-export const reducer = (state = initialState, action) => {
-    console.log('reducer action:', action)
+export const reducer = (state=initialState, action) => {
+    console.log('reducer state:', state);
+
     switch (action.type) {
-        case REQUEST_START:
+        case FETCH_DATA:
+        case ADD_DATA:
+        case EDIT_DATA:
+        case DELETE_DATA:
             return {
                 ...state,
-                isFetching: true,
-                error: '',
+                isLoading: true
             }
-        case FETCH_SMURFS_SUCCESS:
+
+        case FETCH_SUCCESS:
+        case ADD_SUCCESS:
+        case EDIT_SUCCESS:
+        case DELETE_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
+                isLoading: false,
                 error: '',
                 smurfs: action.payload
             }
-        case REQUEST_FAIL:
+
+        case FETCH_FAILED:
+        case ADD_FAILED:
+        case EDIT_FAILED:
+        case DELETE_FAILED:
             return {
                 ...state,
-                isFetching: false,
+                isLoading: false,
                 error: action.payload
             }
-        case ADD_SMURF_SUCCESS:
-            return {
-                ...state,
-                smurfs: [...action.payload]
-            }
+
         default:
             return state;
     }

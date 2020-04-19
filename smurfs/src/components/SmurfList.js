@@ -1,28 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getSmurfs } from '../actions';
+import { connect, useSelector } from 'react-redux';
 
-const SmurfList = props => {
-    console.log('SmurfList props:', props)
+import Smurf from './Smurf';
 
-    const fetchSmurfs = e => {
-        e.preventDefault();
-        props.getSmurfs();
-    }
+const SmurfList = ({ isLoading }) => {
+    const smurfs = useSelector(state => state.smurfs)
 
     return (
         <>
+            <h2>{smurfs.length ? 'Current Residents' : 'No Residents'}</h2>
             <div className='smurf-list'>
-                <button className='btn' onClick={fetchSmurfs}>List the Smurfs</button>
-                {props.smurfs.map(smurf => {
-                    return (
-                        <div key={smurf.id} className='smurf'>
-                            <h2>{smurf.name}</h2>
-                            <p>Age: {smurf.age}</p>
-                            <p>Height: {smurf.height}</p>
-                        </div>
-                    )
-                })}
+                {isLoading ? <span>Loading smurfs...</span> : smurfs.map(smurf => (
+                        <Smurf key={smurf.id} { ...smurf } />
+                    ))}
             </div>
         </>
     )
@@ -30,8 +20,7 @@ const SmurfList = props => {
 
 const mapStateToProps = state => ({
     smurfs: state.smurfs,
-    error: state.error,
-    isFetching: state.isFetching,
+    isLoading: state.isLoading,
 })
 
-export default connect(mapStateToProps, { getSmurfs })(SmurfList);
+export default connect(mapStateToProps, {})(SmurfList);
