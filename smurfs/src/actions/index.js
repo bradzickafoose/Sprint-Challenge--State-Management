@@ -12,36 +12,36 @@ export const DELETE_DATA = 'DELETE_DATA';
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
 export const DELETE_FAILED = 'DELETE_FAILED';
 
-export const getSmurfs = () => dispatch => {
+export const isFetching = () => dispatch => {
     dispatch({ type: FETCH_DATA })
     axios
-        .get('http://localhost:3333/smurfs')
-        .then(response => {
+      .get('http://localhost:3333/smurfs')
+      .then(response => {
             dispatch({ type: FETCH_SUCCESS, payload: response.data })
         })
-        .catch(error => dispatch({ type: FETCH_FAILED, payload: error.message }))
+      .catch(error => dispatch({ type: FETCH_FAILED, payload: error.message }));
 }
 
-export const addSmurf = newSmurf => dispatch => {
+export const isAdding = formData => dispatch => {
     dispatch({ type: ADD_DATA });
     axios
-        .post('http://localhost:3333/smurfs', newSmurf)
-        .then(response => {
-            dispatch({ type: ADD_SUCCESS, payload: response.data })
-        })
-        .catch(error => dispatch({ type: ADD_FAILED, payload: error.message }))
+      .post('http://localhost:3333/smurfs', formData)
+      .then(response => {
+          dispatch({ type: ADD_SUCCESS, payload: response.data })
+      })
+      .catch(error => dispatch({ type: ADD_FAILED, payload: error.message }));
 }
 
 
-export const deleteSmurf = id => dispatch => {
-  dispatch({ type: DELETE_DATA })
+export const isDeleting = id => dispatch => {
+    dispatch({ type: DELETE_DATA })
 
-  const url = `http://localhost:3333/smurfls/${id}`;
+    const url = `http://localhost:3333/smurfs/${id}`;
 
-  axios
+    axios
       .delete(url)
       .then(response => {
-          dispatch({ type: DELETE_SUCCESS, payload: response.data })
+        dispatch({ type: DELETE_SUCCESS, payload: response.data })
       })
-      .catch(error => dispatch({ type: DELETE_FAILED, payload: error.message }))
+      .catch(error => dispatch({ type: DELETE_FAILED, payload: error.message }));
 }
